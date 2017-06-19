@@ -7,7 +7,7 @@ You have experience with command line tools, and your machine already has the la
 * [Install Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) - Must have Node & NPM installed
 
 ## Installing project
-Download or clone project, and `cd` to the project root and run the following commands (excludind the preceding dollar sign):
+Download or clone project, and `cd` to the project root and run the following commands (excluding the preceding dollar sign):
 
 ```
 $ npm install
