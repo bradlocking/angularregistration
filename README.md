@@ -22,5 +22,7 @@ Your terminal should automatically open your browser with the URL to the local s
 ## License
 This project is licensed under the MIT License.
 
+## Acknowledgments
 
+* Hats off to Ray Villalobos on Lynda for his perfect course on building a data driven app using Angular and Firebase, URL to the course [here](https://www.lynda.com/AngularJS-tutorials/AngularJS-1-Building-Data-Driven-App/534629-2.html).
 
