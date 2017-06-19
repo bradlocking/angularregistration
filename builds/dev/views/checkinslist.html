@@ -1,0 +1,81 @@
+<div class="card checkinslist">
+	<h1>Check Ins</h1>
+	<p>Here's a list of your latest check ins</p>
+	<p class="message" ng-show="message"> {{ message }}</p>
+
+	<div class="search cf">
+		<h2>Search Checkins</h2>
+		<input type="text" name="test" ng-model="query" placeholder="Search for users">
+
+		<div class="formgroup">
+			<span class="label">By</span>
+			<select name="" id="" ng-model="order">
+				<option value="firstname">First Name</option>
+				<option value="lastname">Last Name</option>
+				<option value="date">Date</option>
+			</select>
+		</div>
+
+		<div class="formgroup">
+			<input type="radio" id="dirascending" name="direction" ng-model="direction">
+			<label for="dirascending">asc</label>
+			<br/>
+			<input type="radio" id="dirdescending" name="direction" ng-model="direction" value="reverse">
+			<label for="dirdescending">desc</label> 
+		</div>
+
+		<div ng-show="currentUser" class="buttons cf">
+			<button class="btn btn-pick" name="button" 
+				ng-hide="recordId" ng-click="pickRandom(); query='';">Pick Random</button>
+
+			<button class="btn btn-pick" name="button" 
+				ng-show="recordId" ng-click="recordId=''">Reset</button>
+		</div>
+	</div>
+
+	<ul class="userlist cf">
+		<li ng-class="checkin.userState" ng-repeat="checkin in checkins | filter: {$id: recordId, $: query} | orderBy: order:direction ">
+			<div class="checkin">
+				<div ng-show="currentUser" class="buttons">
+
+					<button class="btn btn-delete tooltip" name="button" 
+						ng-click="deleteCheckin(checkin.$id)"><span>Delete this checkin</span>
+					</button>
+					<button class="btn btn-love tooltip"
+						ng-click="showLove(checkin)"><span>Show the love</span></button>
+				</div>
+				<div class="info">
+					<h2>{{ checkin.firstname }} {{ checkin.lastname }}</h2>
+					<div class="date">
+						{{ checkin.date | date: "MMM d,yy h:mm a" }}
+					</div><!-- date -->
+				</div><!-- info -->
+
+				<div class="showcheckins" ng-show="checkin.show">
+					<form class="cf"
+						ng-submit="giveLove(checkin, checkin.giftText)" novalidate>
+
+						<input type="text" name="giftText" 
+							ng-required="true" ng-model="checkin.giftText" placeholder="What are you giving?">
+
+						<button type="submit" class="btn" ng-disabled="myform.$invalid">+</button>
+
+					</form><!-- Give Love Form --> 
+					<ul class="awardslist cf">
+						<li class="cf" ng-repeat="(key, award) in checkin.awards">
+							<div class="award">
+								<div class="buttons">
+									<button type="button" class="btn btn-delete award tooltip"
+										ng-click="deleteLove(checkin, key)">
+										<span>Delete this award</span>
+									</button>
+								</div>
+								{{ award.name }}
+							</div>
+						</li>
+					</ul>
+				</div><!-- Show Checkin -->
+			</div><!-- checkin -->
+		</li>
+	</ul>
+</div>
